@@ -1,0 +1,131 @@
+import java.util.Scanner; 
+interface details { 
+public void data();
+} 
+class balException extends Exception  { 
+ String str; 
+ balException(String str1){ 
+ str=str1; 
+ } 
+ public String tostring() 
+ { 
+ return("Sorry.."+str); 
+ } 
+  
+} 
+class bank implements details { 
+Scanner ob1=new Scanner(System.in); String cus_name; 
+long ac_no;
+long bal=100; 
+bank() 
+{ 
+ac_no=0; 
+} 
+public void data() 
+{ 
+System.out.println("Please enter the account  holder name...:"); 
+cus_name=ob1.nextLine(); 
+System.out.println("Enter the account number of  "+cus_name); 
+ac_no=ob1.nextLong(); 
+} 
+} 
+public class func extends bank 
+{
+long d_amount,c_amount; 
+public void deposit() 
+{ 
+System.out.println("Enter the amount to be  deposited..."); 
+c_amount=ob1.nextLong(); 
+bal=bal+c_amount; 
+System.out.println("AMOUNT DEPOSITED  SUCCESSFULLY...!"); 
+} 
+public void withdrawl() 
+{ 
+try 
+{ 
+ if(bal<=100)throw new balException("Error");   
+}
+catch(balException exception) 
+{ 
+ System.out.println("YOUR ACCOUNT WILL HAVE  LESS THAN MINIMUM BALANCE...!"); 
+} 
+System.out.println("Enter the amount to de  debited..."); 
+d_amount=ob1.nextLong(); 
+bal=bal-d_amount; 
+System.out.println("AMOUNT DEBITED  SUCCESSFULLY....!"); 
+} 
+public void check() 
+{ 
+System.out.println("Total balance amount : "+bal); } 
+public void check(int mi) 
+{ 
+if(mi==1)
+{ 
+bal=bal-100; 
+System.out.println("-------------------------SLV BANK-- ----------------------------------"); 
+System.out.println("ACCOUNT HOLDER NAME :  "+cus_name); 
+System.out.println("ACCOUNT NUMBER :  "+ac_no); 
+System.out.println("AVAILABLE BALANCE : "+bal); 
+System.out.println("---------------------------------------- -------------------------------------"); 
+} 
+else 
+{ 
+System.out.println("-------------------------SLV BANK-- ----------------------------------"); 
+System.out.println("ACCOUNT HOLDER NAME :  "+cus_name); 
+System.out.println("ACCOUNT NUMBER :  "+ac_no);
+System.out.println("AVAILABLE BALANCE : "+bal); 
+System.out.println("---------------------------------------- -------------------------------------"); 
+  
+} 
+} 
+public static void main(String args[]) 
+{ 
+int choice,num,mi,mi1; 
+func b=new func(); 
+Scanner ob=new Scanner(System.in); 
+System.out.println("Welcome to SLV Bank....  Check out the following manual and enter your  choice to get our services..."); 
+System.out.println("1.Deposit"); 
+System.out.println("2.Withdrawl"); 
+System.out.println("3.Balance Check"); System.out.println("4.Ministatement");
+System.out.println("Please enter your choice of  service....:"); 
+choice=ob.nextInt(); 
+b.data(); 
+do 
+{ 
+switch(choice) 
+{ 
+case 1: 
+b.deposit(); 
+break; 
+case 2: 
+b.withdrawl(); 
+break; 
+case 3: 
+b.check(); 
+break; 
+case 4:
+{ 
+System.out.println("If you want balance with  minimum balance enter 0 or else 1.."); 
+mi=ob.nextInt(); 
+b.check(mi); 
+break; 
+} 
+default: 
+System.out.println("Please enter the correct  choice.."); 
+break; 
+} 
+System.out.println("If you want to continue with  another servive please enter 0 or else enter 1..."); 
+num=ob.nextInt(); 
+if(num==0) 
+{ 
+System.out.println("Welcome to SLV Bank....  Check out the following manual and enter your  choice to get our services...");
+System.out.println("1.Deposit"); 
+System.out.println("2.Withdrawl"); 
+System.out.println("3.Balance Check"); System.out.println("4.Ministatement"); 
+System.out.println("Please enter your choice of  service....:"); 
+choice=ob.nextInt(); 
+} 
+}while(num==0); 
+System.out.println("-------------------THANK YOU,  HAVE A NICE DAY!------------------------"); 
+} 
+} 
